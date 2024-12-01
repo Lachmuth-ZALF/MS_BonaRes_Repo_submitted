@@ -1,0 +1,33 @@
+type	year	number
+published	before 2018	0
+published	2018	48
+published	2019	58
+published	2020	112
+published	2021	70
+published	2022	151
+published	2023	170
+published	2024	113
+downloads	before 2018	0
+downloads	2018	2
+downloads	2019	100
+downloads	2020	173
+downloads	2021	347
+downloads	2022	911
+downloads	2023	1034
+downloads	2024	1055
+DOIs	before 2018	22
+DOIs	2018	31
+DOIs	2019	48
+DOIs	2020	41
+DOIs	2021	2
+DOIs	2022	63
+DOIs	2023	103
+DOIs	2024	93
+reuse	before 2018	4
+reuse	2018	4
+reuse	2019	3
+reuse	2020	9
+reuse	2021	5
+reuse	2022	11
+reuse	2023	10
+reuse	2024	17
