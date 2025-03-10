@@ -18,7 +18,7 @@ library(ggraph)
 
 # Settings ----------------------------------------------------------------
 ### Set working directory
-wd <- "C:/"
+wd <-"C:/"
 setwd(wd)
 
 
@@ -73,18 +73,18 @@ dfm<-
 
 
 ## Summarize keywords with similar meaning ---------------------------------
-# (I am sure there is a more elegant way of doing this)
+
 df <- as.data.frame(dfm)
 
 # Reformat column names to able to address columns by name
 colnames(df)[26]<-"Alley-cropping agroforestry"# required for next line to work
 df<-df %>% dplyr::rename_all(make.names)
 
-### LTE
+### LTE select(df,
 df <- mutate(df, long.term.experiments.new = 
-                    sum(long.term.experiments, long.term.field, 
+                    rowSums(select(df,long.term.experiments, long.term.field, 
                         long.term.field.experiments,long.term.field.experiment,
-                        agricultural.long.term,agricultural.long.term.field)) 
+                        agricultural.long.term,agricultural.long.term.field)))
 # Rename and make binary
 df$LTE<-ifelse(df$long.term.experiments.new==0,0,1)
 
@@ -95,7 +95,7 @@ df<-select(df,-c(long.term.experiments, long.term.field,
 
 ###"agricultural experimental", "agricultural experimental field"
 df <- mutate(df, agricultural.exp = 
-                    sum(agricultural.experimental, agricultural.experimental.field)) 
+                    rowSums(select(df,agricultural.experimental, agricultural.experimental.field))) 
 # Rename and make binary
 df$agricultural.experimental.field<-ifelse(df$agricultural.exp==0,0,1)
 
@@ -103,7 +103,7 @@ df<-select(df,-c(agricultural.exp, agricultural.experimental))
 
 ###"agricultural landscape", "agricultural landscapes"        
 df <- mutate(df, agricultural.land = 
-                    sum(agricultural.landscape, agricultural.landscapes)) 
+                    rowSums(select(df,agricultural.landscape, agricultural.landscapes))) 
 # Rename and make binary
 df$agricultural.landscape<-ifelse(df$agricultural.land==0,0,1)
 
@@ -111,17 +111,16 @@ df<-select(df,-c(agricultural.land, agricultural.landscapes))
 
 ### "alley-cropping agroforestry", "alley cropping", "alley cropping agroforestry"    
 df <- mutate(df, alley = 
-                    sum(Alley.cropping.agroforestry, alley.cropping, alley.cropping.agroforestry   
-                    )) 
+                    rowSums(select(df,Alley.cropping.agroforestry, alley.cropping, alley.cropping.agroforestry))) 
 # Rename and make binary
 df$alley.cropping.agroforestry<-ifelse(df$alley==0,0,1)
 
-df<-select(df,-c(alley, Alley.cropping.agroforestry, alley.cropping, alley.cropping.agroforestry))
+df<-select(df,-c(alley, Alley.cropping.agroforestry, alley.cropping))
 
 
 ### "bayesian sequential", "bayesian sequential updating"     
 df <- mutate(df, bayes = 
-                    sum(bayesian.sequential, bayesian.sequential.updating)) 
+                    rowSums(select(df,bayesian.sequential, bayesian.sequential.updating))) 
 # Rename and make binary
 df$bayesian.sequential.updating<-ifelse(df$bayes==0,0,1)
 
@@ -130,7 +129,7 @@ df<-select(df,-c(bayes, bayesian.sequential))
 
 ###"change impacts", "climate change impacts"          
 df <- mutate(df, CCimp = 
-                    sum(change.impacts, climate.change.impacts)) 
+                    rowSums(select(df,change.impacts, climate.change.impacts))) 
 # Rename and make binary
 df$climate.change.impacts<-ifelse(df$CCimp==0,0,1)
 
@@ -139,7 +138,7 @@ df<-select(df,-c(CCimp, change.impacts))
 
 ### "experimental field", "experimental field plots"                 
 df <- mutate(df, expField = 
-                    sum(experimental.field, experimental.field.plots)) 
+                    rowSums(select(df,experimental.field, experimental.field.plots))) 
 # Rename and make binary
 df$experimental.field.plots<-ifelse(df$expField==0,0,1)
 
@@ -148,7 +147,7 @@ df<-select(df,-c(expField, experimental.field))
 
 ### "language processing", "natural language", "natural language processing"                
 df <- mutate(df, langProc = 
-                    sum(language.processing, natural.language, natural.language.processing)) 
+                    rowSums(select(df,language.processing, natural.language, natural.language.processing))) 
 # Rename and make binary
 df$natural.language.processing<-ifelse(df$langProc==0,0,1)
 
@@ -157,7 +156,7 @@ df<-select(df,-c(langProc, language.processing, natural.language))
 
 ### "multivariate water", "multivariate water quality"                   
 df <- mutate(df, watQ = 
-                    sum(multivariate.water, multivariate.water.quality, water.quality)) 
+                    rowSums(select(df,multivariate.water, multivariate.water.quality, water.quality))) 
 # Rename and make binary
 df$water.quality<-ifelse(df$watQ==0,0,1)
 
@@ -166,7 +165,7 @@ df<-select(df,-c(watQ, multivariate.water, multivariate.water.quality))
 
 ### organic carbon", "organic carbon stocks"           
 df <- mutate(df, orgC = 
-                    sum(organic.carbon, organic.carbon.stocks)) 
+                    rowSums(select(df,organic.carbon, organic.carbon.stocks))) 
 # Rename and make binary
 df$organic.carbon<-ifelse(df$orgC==0,0,1)
 
@@ -175,7 +174,7 @@ df<-select(df,-c(orgC, organic.carbon.stocks))
 
 ### "precision weighing", "precision weighing lysimeters"            
 df <- mutate(df, precWeigh = 
-                    sum(precision.weighing, precision.weighing.lysimeters)) 
+                    rowSums(select(df,precision.weighing, precision.weighing.lysimeters))) 
 # Rename and make binary
 df$precision.weighing<-ifelse(df$precWeigh==0,0,1)
 
