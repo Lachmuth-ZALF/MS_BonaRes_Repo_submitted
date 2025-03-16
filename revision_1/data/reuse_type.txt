@@ -1,0 +1,13 @@
+Reuse_purpose	Sum
+Crop modeling	12
+Agro-ecosystem modeling	4
+Scenario development or application	10
+Model calibration	19
+Model evaluation	10
+Citation of data or results	5
+Study site metadata or covariates	19
+Metadata extraction or processing	10
+Method development or evaluation	30
+Metadata analysis	11
+Re-analysis with new objectives	42
+Meta(data) collection	7
